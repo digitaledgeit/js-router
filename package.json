@@ -1,0 +1,9 @@
+{
+  "name": "digitaledgeit-router",
+  "description": "A simple router for client and server side apps.",
+  "main": "router.js",
+  "dependencies": {
+    "path-to-regexp": "^1.0.3"
+  },
+  "license": "MIT"
+}

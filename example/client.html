@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Router : Client example</title>
+</head>
+<body>
+
+    <form>
+        Go to:
+        <input name="url" placeholder="url"/>
+        <button>Push state</button>
+    </form>
+
+    <script src="./client.build.js"></script>
+    <script>
+
+        var form = document.querySelector('form');
+        var input = document.querySelector('input');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            window.history.pushState(null, null, input.value);
+            window.dispatchEvent(new PopStateEvent('popstate', {
+                bubbles: false,
+                cancelable: false,
+                state: history.state
+            }));
+        });
+
+    </script>
+</body>
+</html>
