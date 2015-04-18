@@ -1,9 +1,24 @@
 {
   "name": "digitaledgeit-router",
   "description": "A simple router for client and server side apps.",
+  "version": "0.1.0",
+  "keywords": [
+    "router",
+    "browser",
+    "client",
+    "server",
+    "isomorphic"
+  ],
   "main": "router.js",
   "dependencies": {
     "path-to-regexp": "^1.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:digitaledgeit/js-router.git"
+  },
+  "bugs": {
+    "url": "https://github.com/digitaledgeit/js-router/issues"
   },
   "license": "MIT"
 }
