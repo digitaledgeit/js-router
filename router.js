@@ -1,3 +1,4 @@
+var emitter = require('component-emitter');
 var pathToRegExp = require('path-to-regexp');
 
 /**
@@ -10,18 +11,23 @@ function Router() {
     return new Router();
   }
 
-  /** @private */
+  /**
+   * The available routes
+   * @private
+   * @type {Array.<Object>}
+   */
   this.routes = [];
 
 }
+emitter(Router.prototype);
 
 /**
- * Add a handler for a URL
+ * Map a URL pattern to a handler
  * @param   {string|RegExp}       pattern
  * @param   {function(Object)}    handler
  * @returns {Router}
  */
-Router.prototype.add = function(pattern, handler) {
+Router.prototype.map = function(pattern, handler) {
   var keys    = [];
   var regexp  = pattern;
 
@@ -68,6 +74,13 @@ Router.prototype.route = function(url) {
         if (!key) continue;
         params[key.name] = matches[j]
       }
+
+      //notify listeners that we're about to enter a new route
+      this.emit('enter', {
+        url:    url,
+        route:  route,
+        params: params
+      });
 
       //call the handler
       route.handler.call(this, params);

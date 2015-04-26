@@ -1,14 +1,17 @@
 var Router = require('..');
 
 var router = Router()
-  .add('/', function(params) {
+  .map('/', function(params) {
     console.log('index', params);
   })
-  .add('/user/:username', function(params) {
+  .map('/user/:username', function(params) {
     console.log('user profile', params);
   })
-  .add('*', function(params) {
+  .map('*', function(params) {
     console.log('not found', params);
+  })
+  .on('enter', function(ctx) {
+    console.log('Entering route ', ctx.url);
   })
 ;
 

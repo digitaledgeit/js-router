@@ -10,16 +10,16 @@ Dispatches a URL to the first handler with a matching pattern.
 
 ## Usage
 
-    var router = require('..');
+    var router = require('digitaledgeit-router');
     
     router()
-      .add('/', function(params) {
+      .map('/', function() {
         console.log('index');
       })
-      .add('/user/:username', function(params) {
+      .map('/user/:username', function(params) {
         console.log('user profile', params);
       })
-      .add('*', function(params) {
+      .map('*', function() {
         console.log('not found');
       })
       .route('/')
@@ -51,13 +51,28 @@ Dispatches a URL to the first handler with a matching pattern.
 
 Create a new router.
 
-### .add(pattern : string|RegExp, handler : function)
+### .map(pattern : string|RegExp, handler : function)
 
-Add a handler for a URL.
+Map a URL pattern to a handler.
 
 ### .route(url : string)
 
 Route a URL to the first matching handler.
+
+### .on(event : string, handler : function)
+
+Register an event handler.
+
+### .off(event : string, handler : function)
+
+Un-register an event handler.
+
+## To Do
+
+- splats http://backbonetutorials.com/what-is-a-router/
+- named routes for URL generation
+- prefixes/router chains
+- return the fn and match info from .route() and extract calling of the handler fn into a dispatch method to allow the user to call the handler as they wish e.g. pass in the req, res and next???? but code needs to be consistent on client and server anyway
 
 ## License
 
