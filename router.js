@@ -55,7 +55,7 @@ Router.prototype.map = function(pattern, handler) {
  * Route a URL to the first matching handler
  * @param   {string}                      url       The URL path
  * @param   {Object}                      context   The default context
- * @param   {function(Error, function()}  callback  The callback
+ * @param   {function(Error, Object}}     callback  The callback
  * @returns {Router}
  */
 Router.prototype.route = function(url, context, callback) {

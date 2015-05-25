@@ -2,7 +2,7 @@
 
 A simple router for client *and* server side apps. 
 
-Dispatches a URL to the first handler with a matching pattern.
+Dispatches a URL to each matching handler.
 
 ## Installation
 
@@ -50,19 +50,15 @@ Create a new router.
 
 ### .map(pattern : string|RegExp, handler : function)
 
-Map a URL pattern to a handler.
+Add a handler for a URL.
 
-### .route(url : string)
+### .route(url : string, [context : object], [callback : function])
 
-Route a URL to the first matching handler.
+Route a URL each matching handler.
 
-### .on(event : string, handler : function)
-
-Register an event handler.
-
-### .off(event : string, handler : function)
-
-Un-register an event handler.
+- url - the URL
+- context - the route context - a data object passed to the route handler
+- callback - a function called when the route handler has finished
 
 ## To Do
 
