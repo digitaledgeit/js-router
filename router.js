@@ -1,3 +1,4 @@
+var extend = require('extend');
 var emitter = require('component-emitter');
 var pathToRegExp = require('path-to-regexp');
 
@@ -52,51 +53,84 @@ Router.prototype.map = function(pattern, handler) {
 
 /**
  * Route a URL to the first matching handler
- * @param   {string}    url       The URL path
+ * @param   {string}                      url       The URL path
+ * @param   {Object}                      context   The default context
+ * @param   {function(Error, function()}  callback  The callback
  * @returns {Router}
  */
-Router.prototype.route = function(url) {
-  var matched = false;
+Router.prototype.route = function(url, context, callback) {
+  var self=this, i = 0, matched = false;
 
-  for (var i=0; i<this.routes.length; ++i) {
+  if (arguments.length === 2 && typeof(context) === 'function') {
+    callback  = context;
+    context   = {};
+  }
+
+  function next(err) {
+
+    if (err) {
+      if (callback) callback(err, {
+        matched: matched
+      });
+      return;
+    }
+
+    if (i>=self.routes.length) {
+      if (callback) callback(null, {
+        matched: matched
+      });
+      return;
+    }
 
     //get the route
-    var route = this.routes[i];
+    var route = self.routes[i++];
 
     //evaluate the route
     var matches = url.match(route.regexp);
     if (matches) {
+      matched = true;
 
       //extract parameters
       var params = {};
-      for (var j=1; j<matches.length; ++j) {
-        var key = route.keys[j-1];
+      for (var j = 1; j < matches.length; ++j) {
+        var key = route.keys[j - 1];
         if (!key) continue;
         params[key.name] = matches[j]
       }
 
-      //notify listeners that we're about to enter a new route
-      this.emit('enter', {
-        url:    url,
-        route:  route,
-        params: params
-      });
-
       //call the handler
-      route.handler.call(this, params);
+      var
+        fn  = route.handler,
+        ctx = extend(true, {}, context, {
+          url:    url,
+          params: params
+        })
+      ;
 
-      //stop matching
-      matched = true;
-      break;
+      if (fn.length === 2) {
 
+        //call asynchronously
+        fn.call(this, ctx, next);
+
+      } else {
+
+        //call synchronously
+        try {
+          fn.call(this, ctx);
+          next(null);
+        } catch(err) {
+          next(err);
+        }
+
+      }
+
+    } else {
+      next(null);
     }
 
   }
 
-  //handle 404
-  if (!matched) {
-    throw new Error('Route not found.')
-  }
+  setTimeout(next, 0);
 
   return this;
 };

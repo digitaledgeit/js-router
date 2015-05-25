@@ -16,11 +16,8 @@ Dispatches a URL to the first handler with a matching pattern.
       .map('/', function() {
         console.log('index');
       })
-      .map('/user/:username', function(params) {
-        console.log('user profile', params);
-      })
-      .map('*', function() {
-        console.log('not found');
+      .map('/user/:username', function(ctx) {
+        console.log('user profile', ctx.params.username);
       })
       .route('/')
       .route('/user/jameslnewell')

@@ -1,17 +1,17 @@
 var Router = require('..');
 
 var router = Router()
-  .map('/', function(params) {
-    console.log('index', params);
+  .map('/', function() {
+    console.log('index');
   })
-  .map('/user/:username', function(params) {
-    console.log('user profile', params);
-  })
-  .map('*', function(params) {
-    console.log('not found', params);
+  .map('/user/:username', function(ctx) {
+    console.log('user profile', ctx.params.username);
   })
   .on('enter', function(ctx) {
     console.log('Entering route ', ctx.url);
+  })
+  .on('exit', function(ctx) {
+    console.log('Exiting route ', ctx.url);
   })
 ;
 
