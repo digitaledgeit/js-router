@@ -17,10 +17,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:digitaledgeit/js-router.git"
+    "url": "git@github.com:iso-js/router.git"
   },
   "bugs": {
-    "url": "https://github.com/digitaledgeit/js-router/issues"
+    "url": "https://github.com/iso-js/router/issues"
   },
   "license": "MIT"
 }
