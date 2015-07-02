@@ -4,6 +4,8 @@ A simple router for client *and* server side apps.
 
 Dispatches a URL to each matching handler.
 
+## This module has moved to `@iso/router`
+
 ## Installation
 
     npm install --save digitaledgeit-router

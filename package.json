@@ -1,7 +1,7 @@
 {
   "name": "digitaledgeit-router",
   "description": "A simple router for client and server side apps.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "keywords": [
     "router",
     "browser",
