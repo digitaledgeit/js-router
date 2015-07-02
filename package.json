@@ -1,5 +1,5 @@
 {
-  "name": "digitaledgeit-router",
+  "name": "@iso/router",
   "description": "A simple router for client and server side apps.",
   "version": "1.0.2",
   "keywords": [

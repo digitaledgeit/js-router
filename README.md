@@ -4,15 +4,13 @@ A simple router for client *and* server side apps.
 
 Dispatches a URL to each matching handler.
 
-## This module has moved to `@iso/router`
-
 ## Installation
 
-    npm install --save digitaledgeit-router
+    npm install --save @iso/router
 
 ## Usage
 
-    var router = require('digitaledgeit-router');
+    var router = require('@iso/router');
     
     router()
       .map('/', function() {
