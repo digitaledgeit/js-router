@@ -1,6 +1,6 @@
 {
-  "name": "@iso/router",
-  "description": "A simple router for client and server side apps.",
+  "name": "iso-router",
+  "description": "A simple router for isomorphic apps.",
   "version": "1.0.2",
   "keywords": [
     "router",

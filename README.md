@@ -6,11 +6,11 @@ Dispatches a URL to each matching handler.
 
 ## Installation
 
-    npm install --save @iso/router
+    npm install --save iso-router
 
 ## Usage
 
-    var router = require('@iso/router');
+    var router = require('iso-router');
     
     router()
       .map('/', function() {
